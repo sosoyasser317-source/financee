@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Reload Request to PythonAnywhere
+        env:
+          MY_TOKEN: ${{ secrets.PA_TOKEN }}
         run: |
           curl -X POST "https://www.pythonanywhere.com/api/v0/user/3moora/webapps/3moora.pythonanywhere.com/reload/" \
-          -H "Authorization: Token ${{ secrets.PA_TOKEN }}"
+          -H "Authorization: Token $MY_TOKEN"
