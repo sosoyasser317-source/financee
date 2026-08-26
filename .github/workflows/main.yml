@@ -1,0 +1,17 @@
+name: Auto Reload PythonAnywhere
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  reload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Reload Request to PythonAnywhere
+        env:
+          PA_TOKEN: ${{ secrets.PA_TOKEN }}
+        run: |
+          curl -X POST "https://www.pythonanywhere.com/api/v0/user/3moora/webapps/3moora.pythonanywhere.com/reload/" \
+          -H "Authorization: Token ${PA_TOKEN}"
